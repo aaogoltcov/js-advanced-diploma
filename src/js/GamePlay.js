@@ -74,18 +74,23 @@ export default class GamePlay {
     }
 
     for (const position of positions) {
+      // расположение и аватар персонажа
       const cellEl = this.boardEl.children[position.position];
       const charEl = document.createElement('div');
       charEl.classList.add('character', position.character.type);
 
+
+      // отображение уровня здоровья персонажа
       const healthEl = document.createElement('div');
       healthEl.classList.add('health-level');
 
+      // статус здоровья персонажа
       const healthIndicatorEl = document.createElement('div');
       healthIndicatorEl.classList.add('health-level-indicator', `health-level-indicator-${calcHealthLevel(position.character.health)}`);
       healthIndicatorEl.style.width = `${position.character.health}%`;
       healthEl.appendChild(healthIndicatorEl);
 
+      // добавление персонажа на карту
       charEl.appendChild(healthEl);
       cellEl.appendChild(charEl);
     }
@@ -203,7 +208,7 @@ export default class GamePlay {
   hideCellTooltip(index) {
     this.cells[index].title = '';
   }
-  
+
   showDamage(index, damage) {
     return new Promise((resolve) => {
       const cell = this.cells[index];
