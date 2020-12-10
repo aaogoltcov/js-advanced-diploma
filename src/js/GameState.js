@@ -1,3 +1,5 @@
+'use strict';
+
 export default class GameState {
 
   // функция определения текущего игрока

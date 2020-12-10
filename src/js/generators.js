@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * Generates random characters
  * @param allowedTypes iterable of classes

@@ -1,3 +1,5 @@
+'use strict';
+
 export default class Character {
 
   constructor(name, level, type = 'generic', attack, defence, attackDistance, motionDistance) {

@@ -1,3 +1,5 @@
+'use strict';
+
 import Character from './Character';
 
 export default class PositionedCharacter {

@@ -1,3 +1,5 @@
+'use strict';
+
 import { Bowerman, Daemon, Magician, Swordsman, Undead, Zombie } from "./Character";
 import GamePlay from "./GamePlay";
 

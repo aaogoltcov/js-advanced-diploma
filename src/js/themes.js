@@ -1,3 +1,5 @@
+'use strict';
+
 const themes = {
   prairie: 'prairie',
   desert: 'desert',

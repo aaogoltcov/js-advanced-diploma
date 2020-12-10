@@ -1,3 +1,5 @@
+'use strict';
+
 const cursors = {
   auto: 'auto',
   pointer: 'pointer',

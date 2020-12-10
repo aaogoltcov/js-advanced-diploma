@@ -1,3 +1,5 @@
+'use strict';
+
 import { playerTeamAllowed, enemyTeamAllowed, playerAllowedPositions, enemyAllowedPositions } from './Team';
 import { generateTeam, generateTeamPositions, getRandomNumber } from './generators';
 import GameState from "./GameState";
@@ -7,7 +9,6 @@ export default class GameController {
   constructor(gamePlay, stateService) {
     this.gamePlay = gamePlay;
     this.stateService = stateService;
-    this.currentCharacterIndex = Number();
     this.previousCharacterIndex = Number();
     this.arrayOfPossiblePositions = Array();
     this.arrayOfPossibleAttackes = Array();
@@ -23,11 +24,11 @@ export default class GameController {
   }
 
   // самое начало игры
-  init(newGame = false) {
+  init(newGame) {
 
     // загрузка сохраненной игры
     let savedGame = this.stateService.load();
-    if (savedGame && !newGame) {
+    if (savedGame !== null && newGame === false) {
       // прорисовка UI в зависимости от уровня игры
       this.currentLevel = savedGame.currentLevel;
       this.drawUIWithLevels();
@@ -35,7 +36,11 @@ export default class GameController {
       // команды
       this.playerTeam = savedGame.playerTeam;
       this.enemyTeam = savedGame.enemyTeam;
-      this.generalTeam = savedGame.generalTeam;
+
+      // общую команду формируем из объектов 2-х команд, чтобы сохранить наследование
+      this.generalTeam = Array();
+      Array.prototype.push.apply(this.generalTeam, this.playerTeam);
+      Array.prototype.push.apply(this.generalTeam, this.enemyTeam);
       this.currentGamer = GameState.setCurrentGamer(savedGame.currentGamer);
 
       // прорисовка позиций игрока и противника
@@ -566,7 +571,6 @@ export default class GameController {
       'playerScore': this.playerScore,
       'playerTeam': this.playerTeam,
       'enemyTeam': this.enemyTeam,
-      'generalTeam': this.generalTeam,
       'currentGamer': this.currentGamer,
     });
   }
